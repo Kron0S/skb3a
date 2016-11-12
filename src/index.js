@@ -3,6 +3,7 @@ import promise from 'es6-promise';
 import fetch from 'isomorphic-fetch';
 import express from 'express'
 import cors from 'cors';
+import _ from 'lodash';
 
 let pc = {};
 const app = express();
@@ -14,13 +15,15 @@ app.get('/volumes', async (req, res) => {
   }
 	for (let i = 0; i < pc.hdd.length; i++) {
     const hdd = pc.hdd[i];
-    console.log(hdd);
 		if (hdd.volume in hdds) {
       hdds[hdd.volume] += hdd.size;
     } else {
       hdds[hdd.volume] = hdd.size;
     }
 	}
+  console.log(hdds);
+  hdds = _.mapValues(hdds, function (hdd) {return hdd + 'B'});
+  console.log(hdds);
 
 	return res.send(JSON.stringify(hdds));
 });
