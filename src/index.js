@@ -21,9 +21,7 @@ app.get('/volumes', async (req, res) => {
       hdds[hdd.volume] = hdd.size;
     }
 	}
-  console.log(hdds);
   hdds = _.mapValues(hdds, function (hdd) {return hdd + 'B'});
-  console.log(hdds);
 
 	return res.send(JSON.stringify(hdds));
 });
