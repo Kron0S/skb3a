@@ -41,7 +41,7 @@ app.get(/\/.*/, async (req, res) => {
     console.log(answer.constructor()[part]);
     console.log(typeof answer[part]);
     console.log(111);
-		if (answer.constructor()[part] === undefined) {
+		if (answer.constructor()[part] === undefined && answer.hasOwnProperty(part)) {
       console.log('have');
 			answer = answer[part];
 		} else {
